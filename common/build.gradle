@@ -1,14 +1,14 @@
 plugins {
-    id 'multiloader-common'
-    id 'net.neoforged.moddev'
+	id "bundleweight-common"
+	id 'net.neoforged.moddev'
 }
 
 neoForge {
-    neoFormVersion = "${minecraft_version}-${neoform_version}"
-    parchment {
-        minecraftVersion = parchment_minecraft_version
-        mappingsVersion = parchment_version
-    }
+	neoFormVersion = "${minecraft_version}-${neoform_version}"
+	parchment {
+		minecraftVersion = parchment_minecraft_version
+		mappingsVersion = parchment_version
+	}
 }
 
 @CacheableRule

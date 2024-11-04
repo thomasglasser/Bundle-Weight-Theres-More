@@ -1,10 +1,11 @@
 {
     "required": true,
     "minVersion": "0.8",
-    "package": "dev.thomasglasser.multiloadertemplate.mixin",
+    "package": "dev.thomasglasser.bundleweight.mixin",
     "refmap": "${mod_id}.refmap.json",
     "compatibilityLevel": "JAVA_21",
     "mixins": [
+        "minecraft.world.item.component.BundleContentsMixin"
     ],
     "client": [
     ],
