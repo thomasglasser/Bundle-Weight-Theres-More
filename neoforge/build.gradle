@@ -1,0 +1,55 @@
+plugins {
+    id 'multiloader-loader'
+    id 'net.neoforged.moddev'
+}
+
+neoForge {
+    version = neoforge_version
+
+    parchment {
+        minecraftVersion = parchment_minecraft_version
+        mappingsVersion = parchment_version
+    }
+
+    runs {
+        configureEach {
+            systemProperty('neoforge.enabledGameTestNamespaces', mod_id)
+            ideName = "NeoForge ${it.name.replace('_', ' ').capitalize()} (${project.path})" // Unify the run config names with fabric
+        }
+        client {
+            client()
+            gameDirectory = project.layout.projectDirectory.dir('runs/client')
+        }
+        client_2 {
+            client()
+            gameDirectory = project.layout.projectDirectory.dir('runs/client_alt')
+            programArguments = ["--username", "Dev2"]
+        }
+        server {
+            server()
+            gameDirectory = project.layout.projectDirectory.dir('runs/server')
+        }
+        data {
+            data()
+            gameDirectory = project.layout.projectDirectory.dir('runs/data')
+            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('../common/src/generated/resources/').getAbsolutePath(), '--existing', file('../common/src/main/resources/').getAbsolutePath()
+        }
+    }
+    mods {
+        "${mod_id}" {
+            sourceSet sourceSets.main
+        }
+    }
+}
+
+configurations {
+    runtimeClasspath.extendsFrom localRuntime
+}
+
+dependencies {
+    jarJar implementation("dev.thomasglasser.tommylib:tommylib-neoforge-${minecraft_version}:${tommylib_version}")
+
+    // Runtime
+    localRuntime "maven.modrinth:jade:${jade_version}+neoforge"
+//	localRuntime "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
+}
