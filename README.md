@@ -1,28 +1,44 @@
-# MultiLoader Template
+# Bundle Weight, There's More!
+Ever wished your 1 item per stack items could go in a bundle together? Now they can! This mod separates the stack size and bundle weight by adding a `bundleweight:bundle_weight` component that controls how much space it takes up! The component has a `numerator` and `denominator` field allowing for advanced customization!
+Example: `/give @s minecraft:diamond_sword[bundleweight:bundle_weight={numerator:1,denominator:3}]`
 
-This project provides a Gradle project template that can compile mods for multiple modloaders using a common sourceset. This project does not require any third party libraries or dependencies. If you have any questions or want to discuss the project join our [Discord](https://discord.myceliummod.network).
 
-## Getting Started
+Boom! Now you have a diamond sword that only takes up 1/3 of a bundle but still stacks to 1.
 
-### IntelliJ IDEA
-This guide will show how to import the MultiLoader Template into IntelliJ IDEA. The setup process is roughly equivalent to setting up the modloaders independently and should be very familiar to anyone who has worked with their MDKs.
 
-1. Clone or download this repository to your computer.
-2. Configure the project by editing the `gradle.properties` file.
-3. Configure the `build.yml` and `publish.yml` files with the proper name and link.
-4. Open the template's root folder as a new project in IDEA. This is the folder that contains this README file and the gradlew executable.
-5. If your default JVM/JDK is not Java 21 you will encounter an error when opening the project. This error is fixed by going to `File > Settings > Build, Execution, Deployment > Build Tools > Gradle > Gradle JVM` and changing the value to a valid Java 21 JVM. You will also need to set the Project SDK to Java 21. This can be done by going to `File > Project Structure > Project SDK`. Once both have been set open the Gradle tab in IDEA and click the refresh button to reload the project.
-6. Configure the packages and classes in the `src` folder to match your mod.
-7. Open your Run/Debug Configurations. Under the Application category there should now be options to run NeoForge and Fabric projects. Select one of the client options and try to run it.
-8. Assuming you were able to run the game in step 7 your workspace should now be set up.
 
-## Development Guide
-When using this template the majority of your mod is developed in the Common project. The Common project is compiled against the vanilla game and is used to hold code that is shared between the different loader-specific versions of your mod. The Common project has no knowledge or access to ModLoader specific code, apis, or concepts. Code that requires something from a specific loader must be done through the project that is specific to that loader, such as the NeoForge or Fabric project.
+Note: This is a library, it doesn't change bundle weights itself. For that see [Bundle Wait, There's Four!](https://modrinth.com/mod/bundlefour)
 
-Loader specific projects such as the NeoForge and Fabric project are used to load the Common project into the game. These projects also define code that is specific to that loader. Loader specific projects can access all of the code in the Common project. It is important to remember that the Common project can not access code from loader specific projects.
+![CurseForge Version](https://img.shields.io/curseforge/v/1134075?label=latest)
+![Modrinth Game Versions](https://img.shields.io/modrinth/game-versions/bundleweight)
 
-## Removing Platforms and Loaders
-While the MultiLoader Template includes support for many platforms and loaders you can easily remove support for the ones you don't need. This can be done by deleting the subproject folder and then removing it from the `settings.gradle` file. For example if you wanted to remove support for Forge you would follow the following steps. 
+[![Available on Github](https://rawcdn.githack.com/intergrav/devins-badges/1aec26abb75544baec37249f42008b2fcc0e731f/assets/cozy/available/github_vector.svg)](https://github.com/thomasglasser/Bundle-Weight-Theres-More)
+[![Available on Modrinth](https://rawcdn.githack.com/intergrav/devins-badges/1aec26abb75544baec37249f42008b2fcc0e731f/assets/cozy/available/modrinth_vector.svg)](https://modrinth.com/mod/bundleweight)
+[![Available on Curseforge](https://rawcdn.githack.com/intergrav/devins-badges/1aec26abb75544baec37249f42008b2fcc0e731f/assets/cozy/available/curseforge_vector.svg)](https://www.curseforge.com/minecraft/mc-mods/bundleweight)
 
-1. Delete the subproject folder. For example, delete `MultiLoader-Template/forge`.
-2. Remove the project from `settings.gradle`. For example, remove `include("forge")`. 
+[![Supported on NeoForge](https://rawcdn.githack.com/thomasglasser/thomasglasser/1f85027a20670b89b94462ddd345af897b47ac17/files/badges/cozy/supported/neoforge_vector.svg)](https://modrinth.com/mod/bundleweight/versions?l=neoforge)
+[![Supported on Fabric](https://rawcdn.githack.com/intergrav/devins-badges/1aec26abb75544baec37249f42008b2fcc0e731f/assets/cozy/supported/fabric_vector.svg)](https://modrinth.com/mod/bundleweight/versions?l=fabric)
+[![Supported on Quilt](https://rawcdn.githack.com/intergrav/devins-badges/1aec26abb75544baec37249f42008b2fcc0e731f/assets/cozy/supported/quilt_vector.svg)](https://modrinth.com/mod/bundleweight/versions?l=quilt)
+
+[![Read the Documentation](https://rawcdn.githack.com/intergrav/devins-badges/1aec26abb75544baec37249f42008b2fcc0e731f/assets/cozy/documentation/ghpages_vector.svg)](https://github.com/thomasglasser/Bundle-Weight-Theres-More/wiki)
+[![Buy Me a Coffee](https://rawcdn.githack.com/intergrav/devins-badges/1aec26abb75544baec37249f42008b2fcc0e731f/assets/cozy/donate/buymeacoffee-singular_vector.svg)](https://buymeacoffee.com/thomasglasser)
+[![Discord](https://rawcdn.githack.com/intergrav/devins-badges/1aec26abb75544baec37249f42008b2fcc0e731f/assets/cozy/social/discord-singular_vector.svg)](https://discord.gg/tjf7CedM38)
+
+[![Hosted By: Cloudsmith](https://img.shields.io/badge/OSS%20hosting%20by-cloudsmith-blue?logo=cloudsmith&style=for-the-badge)](https://cloudsmith.com)
+
+Package repository hosting is graciously provided by  [Cloudsmith](https://cloudsmith.com).
+Cloudsmith is the only fully hosted, cloud-native, universal package management solution, that
+enables your organization to create, store, and share packages in any format, to any place, with total
+confidence.
+
+## Stats
+### Github
+![GitHub all releases downloads](https://img.shields.io/github/downloads/thomasglasser/Bundle-Weight-Theres-More/total?color=blue)
+![GitHub Repo stars](https://img.shields.io/github/stars/thomasglasser/Bundle-Weight-Theres-More)
+
+![GitHub issues](https://img.shields.io/github/issues/thomasglasser/Bundle-Weight-Theres-More)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/thomasglasser/Bundle-Weight-Theres-More)
+### Modrinth
+![Modrinth Downloads](https://img.shields.io/modrinth/dt/bundleweight)
+### Curseforge
+![CurseForge Downloads](https://img.shields.io/curseforge/dt/1134075?color=orange)
