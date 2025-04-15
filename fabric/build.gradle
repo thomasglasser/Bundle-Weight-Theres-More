@@ -1,6 +1,6 @@
 plugins {
+	id 'fabric-loom' version "${loom_version}"
 	id "bundleweight-loader"
-	id 'fabric-loom'
 }
 
 dependencies {
@@ -15,10 +15,12 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
 	implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
 
-	include modImplementation("dev.thomasglasser.tommylib:tommylib-fabric-${minecraft_version}:${tommylib_version}")
+	include modImplementation("dev.thomasglasser.tommylib:tommylib-fabric-${minecraft_version}:${tommylib_version}") {
+		transitive = false
+	}
 
 	// Runtime
-//	modLocalRuntime "com.terraformersmc:modmenu:${modmenu_version}"
+	modLocalRuntime "com.terraformersmc:modmenu:${modmenu_version}"
 	modLocalRuntime "maven.modrinth:jade:${jade_version}+fabric"
 //	modLocalRuntime "mezz.jei:jei-${minecraft_version}-fabric:${jei_version}"
 }
@@ -28,9 +30,7 @@ loom {
 	if (aw.exists()) {
 		accessWidenerPath.set(aw)
 	}
-	mixin {
-		defaultRefmapName.set("${mod_id}.refmap.json")
-	}
+
 	runs {
 		client {
 			client()
@@ -38,7 +38,7 @@ loom {
 			ideConfigGenerated(true)
 			runDir("runs/client")
 		}
-		client_2 {
+		client_alt {
 			client()
 			setConfigName("Fabric Client 2")
 			ideConfigGenerated(true)
@@ -50,5 +50,9 @@ loom {
 			ideConfigGenerated(true)
 			runDir("runs/server")
 		}
+	}
+
+	mixin {
+		add sourceSets.main, "${mod_id}.refmap.json"
 	}
 }

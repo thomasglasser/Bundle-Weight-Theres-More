@@ -1,10 +1,14 @@
+import javax.inject.Inject
+
 plugins {
 	id "bundleweight-common"
-	id 'net.neoforged.moddev'
+	id 'net.neoforged.moddev' version "${mdg_version}"
 }
+
 
 neoForge {
 	neoFormVersion = "${minecraft_version}-${neoform_version}"
+
 	parchment {
 		minecraftVersion = parchment_minecraft_version
 		mappingsVersion = parchment_version
@@ -16,7 +20,7 @@ abstract class MakeLibraryLenient implements ComponentMetadataRule {
 	final String targetGroup
 	final Set<String> targetModule
 
-	@javax.inject.Inject MakeLibraryLenient(String targetGroup, Collection<String> targetModule) {
+	@Inject MakeLibraryLenient(String targetGroup, Collection<String> targetModule) {
 		this.targetGroup = targetGroup
 		this.targetModule = Set.copyOf(targetModule)
 	}
@@ -39,7 +43,7 @@ abstract class MakeLibraryLenient implements ComponentMetadataRule {
 
 dependencies {
 	compileOnly group:'net.fabricmc', name:'sponge-mixin', version:mixin_version
-	implementation "io.github.llamalad7:mixinextras-common:${mixinextras_version}"
+	compileOnly "io.github.llamalad7:mixinextras-common:${mixinextras_version}"
 	components {
 		withModule("net.neoforged:minecraft-dependencies", MakeLibraryLenient) {
 			params("org.ow2.asm", ["asm", "asm-tree", "asm-commons", "asm-util"])
@@ -47,10 +51,10 @@ dependencies {
 	}
 	implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2'
 
-	implementation "dev.thomasglasser.tommylib:tommylib-common-${minecraft_version}:${tommylib_version}"
+	implementation("dev.thomasglasser.tommylib:tommylib-common-${minecraft_version}:${tommylib_version}") {
+		transitive = false
+	}
 }
-
-sourceSets.main.resources { srcDir './src/generated/resources' }
 
 configurations {
 	commonJava {
