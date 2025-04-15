@@ -41,8 +41,8 @@ jobs:
 
     steps:
       - name: Download mod artifact
-        uses: actions/download-artifact@v3
-        continue-on-error: true
+        uses: actions/download-artifact@v4
+        continue-on-error: false
         with:
           name: Bundle Weight, There's More!
 
@@ -61,7 +61,6 @@ jobs:
           echo "loader_name=$loader_name" >> $GITHUB_OUTPUT
           echo "mc_version=$mc_version" >> $GITHUB_OUTPUT
           echo "mod_version=$mod_version" >> $GITHUB_OUTPUT
-          rm ${loader}/build/libs/*shadow.jar
 
       - name: Publish Github Release
         uses: Kir-Antipov/mc-publish@v3.3
@@ -92,8 +91,8 @@ jobs:
         if : (matrix.website == 'modrinth' && matrix.loader != 'common')
         with:
           files: |
-            ${{ matrix.loader }}/build/libs/!(*-@(dev|sources|javadoc|slim)).jar
-            ${{ matrix.loader }}/build/libs/*-@(dev|sources|javadocs).jar
+            ${{ matrix.loader }}/build/libs/!(*-@(dev|sources|javadoc)).jar
+            ${{ matrix.loader }}/build/libs/*-@(dev|sources|javadoc).jar
           name: ${{ inputs.title }}
           version: ${{ steps.mod_env.outputs.mod_version }}
           changelog: ${{ env.changelog }}${{ inputs.last_version }}...${{ inputs.version }}
@@ -110,7 +109,7 @@ jobs:
         if: (matrix.website == 'curseforge' && matrix.loader != 'common')
         with:
           files: |
-            ${{ matrix.loader }}/build/libs/!(*-@(dev|sources|javadoc|slim)).jar
+            ${{ matrix.loader }}/build/libs/!(*-@(dev|sources|javadoc)).jar
             ${{ matrix.loader }}/build/libs/*-@(dev|sources|javadocs).jar
           name: ${{ inputs.title }}
           version: ${{ steps.mod_env.outputs.mod_version }}
