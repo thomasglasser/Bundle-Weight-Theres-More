@@ -2,12 +2,12 @@ package dev.thomasglasser.bundleweight;
 
 import dev.thomasglasser.bundleweight.api.BundleWeightDataComponents;
 import dev.thomasglasser.tommylib.api.platform.TommyLibServices;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class BundleWeight {
-    public static final String MOD_ID = "bundleweight";
+    public static final String MOD_NAMESPACE = "bundleweight";
     public static final String MOD_NAME = "Bundle Weight, There's More!";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_NAME);
 
@@ -17,7 +17,7 @@ public class BundleWeight {
         BundleWeightDataComponents.init();
     }
 
-    public static ResourceLocation modLoc(String s) {
-        return ResourceLocation.fromNamespaceAndPath(MOD_ID, s);
+    public static Identifier modId(String path) {
+        return Identifier.fromNamespaceAndPath(MOD_NAMESPACE, path);
     }
 }

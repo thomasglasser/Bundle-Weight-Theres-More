@@ -5,6 +5,7 @@
     "refmap": "${mod_id}.refmap.json",
     "compatibilityLevel": "JAVA_21",
     "mixins": [
+        "minecraft.world.item.component.BundleContentsMutableMixin",
         "minecraft.world.item.component.BundleContentsMixin"
     ],
     "client": [

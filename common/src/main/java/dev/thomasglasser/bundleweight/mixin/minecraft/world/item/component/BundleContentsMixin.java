@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(BundleContents.class)
 public class BundleContentsMixin {
     @Inject(method = "getWeight", at = @At("HEAD"), cancellable = true)
-    private static void getWeight(ItemStack stack, CallbackInfoReturnable<Fraction> cir) {
+    private static void overrideWeight(ItemStack stack, CallbackInfoReturnable<Fraction> cir) {
         Fraction bundleWeight = stack.get(BundleWeightDataComponents.BUNDLE_WEIGHT.get());
         if (bundleWeight != null) {
             BundleContents bundleContents = stack.get(DataComponents.BUNDLE_CONTENTS);
