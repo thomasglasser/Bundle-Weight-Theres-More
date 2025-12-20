@@ -15,8 +15,8 @@ on:
         description: "new mod version"
         required: true
         type: string
-      game_versions:
-        description: "the minecraft versions it supports"
+      game_version:
+        description: "the minecraft version it supports"
         required: true
         type: string
 
@@ -77,11 +77,11 @@ jobs:
           name : ${{ inputs.title }}
           version: ${{ steps.mod_env.outputs.mod_version }}
           changelog: ${{ env.changelog }}${{ inputs.last_version }}...${{ inputs.version }}
-          github-tag: ${{ steps.mod_env.outputs.mod_version }}
+          github-tag: ${{ inputs.game_version }}-${{ steps.mod_env.outputs.mod_version }}
           github-generate-changelog: true
           java : Java 21
           game-versions: |
-            ${{ inputs.game_versions }}
+            ${{ inputs.game_version }}
 
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -98,7 +98,7 @@ jobs:
           changelog: ${{ env.changelog }}${{ inputs.last_version }}...${{ inputs.version }}
           java: Java 21
           game-versions: |
-            ${{ inputs.game_versions }}
+            ${{ inputs.game_version }}
 
           modrinth-id: bundleweight
           modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
@@ -116,7 +116,7 @@ jobs:
           changelog: ${{ env.changelog }}${{ inputs.last_version }}...${{ inputs.version }}
           java: Java 21
           game-versions: |
-            ${{ inputs.game_versions }}
+            ${{ inputs.game_version }}
 
           curseforge-id: 1134075
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
