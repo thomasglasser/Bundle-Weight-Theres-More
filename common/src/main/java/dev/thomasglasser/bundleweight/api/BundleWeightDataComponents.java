@@ -3,9 +3,8 @@ package dev.thomasglasser.bundleweight.api;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import dev.thomasglasser.bundleweight.BundleWeight;
-import dev.thomasglasser.tommylib.api.registration.DeferredHolder;
-import dev.thomasglasser.tommylib.api.registration.DeferredRegister;
+import dev.thomasglasser.tommylib.api.registration.ExtendedHolder;
+import dev.thomasglasser.tommylib.api.registration.Registrar;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
@@ -13,13 +12,11 @@ import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.util.ExtraCodecs;
 import org.apache.commons.lang3.math.Fraction;
+import org.jetbrains.annotations.ApiStatus;
 
 public class BundleWeightDataComponents {
-    public static final DeferredRegister<DataComponentType<?>> DATA_COMPONENTS = DeferredRegister.create(Registries.DATA_COMPONENT_TYPE, BundleWeight.MOD_NAMESPACE);
+    public static final Registrar.DataComponents DATA_COMPONENTS = Registrar.createDataComponents(Registries.DATA_COMPONENT_TYPE, BundleWeightConstants.MOD_ID);
 
-    /**
-     * Codecs for the {@link Fraction} class.
-     */
     private static final StreamCodec<ByteBuf, Fraction> FRACTION_STREAM_CODEC = StreamCodec.composite(
             ByteBufCodecs.VAR_INT, Fraction::getNumerator,
             ByteBufCodecs.VAR_INT, Fraction::getDenominator,
@@ -38,10 +35,9 @@ public class BundleWeightDataComponents {
             VALIDATED_FRACTION_CODEC,
             Codec.doubleRange(0, 1).xmap(Fraction::getFraction, Fraction::doubleValue));
 
-    /**
-     * Used to determine the weight of an item in a bundle separately from the stack size.
-     */
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Fraction>> BUNDLE_WEIGHT = DATA_COMPONENTS.register("bundle_weight", () -> DataComponentType.<Fraction>builder().persistent(FRACTION_OR_DOUBLE_CODEC).networkSynchronized(FRACTION_STREAM_CODEC).build());
+    /// The weight of an item in a bundle.
+    public static final ExtendedHolder<DataComponentType<?>, DataComponentType<Fraction>> BUNDLE_WEIGHT = DATA_COMPONENTS.registerSimple("bundle_weight", builder -> builder.persistent(FRACTION_OR_DOUBLE_CODEC).networkSynchronized(FRACTION_STREAM_CODEC));
 
+    @ApiStatus.Internal
     public static void init() {}
 }

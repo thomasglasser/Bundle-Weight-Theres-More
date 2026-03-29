@@ -1,9 +1,8 @@
 {
     "required": true,
     "minVersion": "0.8",
-    "package": "dev.thomasglasser.bundleweight.mixin",
-    "refmap": "${mod_id}.refmap.json",
-    "compatibilityLevel": "JAVA_21",
+    "package": "dev.thomasglasser.bundleweight.impl.mixin",
+    "compatibilityLevel": "JAVA_25",
     "mixins": [
         "minecraft.world.item.component.BundleContentsMutableMixin",
         "minecraft.world.item.component.BundleContentsMixin"

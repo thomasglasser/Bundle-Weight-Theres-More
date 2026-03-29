@@ -1,4 +1,4 @@
-package dev.thomasglasser.bundleweight;
+package dev.thomasglasser.bundleweight.impl;
 
 import net.fabricmc.api.ModInitializer;
 
