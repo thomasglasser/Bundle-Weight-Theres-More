@@ -25,7 +25,17 @@ public class BundleContentsMixin {
                 cir.setReturnValue(bundle.weight().map((nestedWeight) -> nestedWeight.add(bundleWeight)));
             } else {
                 List<BeehiveBlockEntity.Occupant> bees = item.getOrDefault(DataComponents.BEES, Bees.EMPTY).bees();
-                cir.setReturnValue(!bees.isEmpty() ? BundleContents.BEEHIVE_WEIGHT : DataResult.success(bundleWeight));
+                if (bees.isEmpty()) {
+                    cir.setReturnValue(DataResult.success(bundleWeight));
+                }
+            }
+        } else {
+            List<BeehiveBlockEntity.Occupant> bees = item.getOrDefault(DataComponents.BEES, Bees.EMPTY).bees();
+            if (!bees.isEmpty()) {
+                Fraction beehiveWeight = item.get(BundleWeightDataComponents.BEEHIVE_BUNDLE_WEIGHT.get());
+                if (beehiveWeight != null) {
+                    cir.setReturnValue(DataResult.success(beehiveWeight));
+                }
             }
         }
     }

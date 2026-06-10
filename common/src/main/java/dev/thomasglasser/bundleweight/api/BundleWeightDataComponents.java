@@ -37,6 +37,8 @@ public class BundleWeightDataComponents {
 
     /// The weight of an item in a bundle.
     public static final ExtendedHolder<DataComponentType<?>, DataComponentType<Fraction>> BUNDLE_WEIGHT = DATA_COMPONENTS.registerSimple("bundle_weight", builder -> builder.persistent(FRACTION_OR_DOUBLE_CODEC).networkSynchronized(FRACTION_STREAM_CODEC));
+    /// The weight of a non-empty beehive in a bundle.
+    public static final ExtendedHolder<DataComponentType<?>, DataComponentType<Fraction>> BEEHIVE_BUNDLE_WEIGHT = DATA_COMPONENTS.registerSimple("beehive_bundle_weight", builder -> builder.persistent(FRACTION_OR_DOUBLE_CODEC).networkSynchronized(FRACTION_STREAM_CODEC));
 
     @ApiStatus.Internal
     public static void init() {}
