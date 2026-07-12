@@ -10,13 +10,11 @@ dependencies {
 	implementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
 	implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
 
-//	include api("dev.thomasglasser.tommylib:tommylib-fabric-${minecraft_version}:${tommylib_version}")
-	include api("dev.thomasglasser.tommylib:tommylib-fabric-26.1:${tommylib_version}")
+	include api("dev.thomasglasser.tommylib:tommylib-fabric-${minecraft_version}:${tommylib_version}")
 
 	// Runtime
 	localRuntime "com.terraformersmc:modmenu:${modmenu_version}"
-//	localRuntime "maven.modrinth:jade:${jade_version}+fabric"
-	localRuntime "maven.modrinth:jade:26.1.0+fabric"
+	localRuntime "maven.modrinth:jade:${jade_version}+fabric"
 	localRuntime "mezz.jei:jei-${minecraft_version}-fabric:${jei_version}"
 }
 

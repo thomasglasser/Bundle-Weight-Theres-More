@@ -1,11 +1,11 @@
 # Bundle Weight, There's More!
-Ever wished your 1 item per stack items could go in a bundle together? Now they can! This mod separates the stack size and bundle weight by adding a `bundleweight:bundle_weight` component that controls how much space it takes up! The component has a `numerator` and `denominator` field allowing for advanced customization!
-Example: `/give @s minecraft:diamond_sword[bundleweight:bundle_weight={numerator:1,denominator:3}]`
+Ever wished your 1 item per stack items could go in a bundle together? Now they can! This mod separates the stack size and bundle weight by adding a `bundleweight:bundle_weight` component that controls how much space it takes up! The component has a `numerator` and `denominator` field allowing for advanced customization, or it can be a simple double!
 
+Examples: 
+- `/give @s minecraft:diamond_sword[bundleweight:bundle_weight={numerator:1,denominator:4}]`
+- `/give @s minecraft:diamond_sword[bundleweight:bundle_weight=0.25]`
 
-Boom! Now you have a diamond sword that only takes up 1/3 of a bundle but still stacks to 1.
-
-
+Boom! Now you have a diamond sword that only takes up 1/4 of a bundle but still stacks to 1.
 
 Note: This is a library, it doesn't change bundle weights itself. For that see [Bundle Wait, There's Four!](https://modrinth.com/mod/bundlefour)
 

@@ -45,8 +45,7 @@ configurations {
 }
 
 dependencies {
-//	jarJar api("dev.thomasglasser.tommylib:tommylib-neoforge-${minecraft_version}:${tommylib_version}")
-	jarJar api("dev.thomasglasser.tommylib:tommylib-neoforge-26.1:${tommylib_version}")
+	jarJar api("dev.thomasglasser.tommylib:tommylib-neoforge-${minecraft_version}:${tommylib_version}")
 
 	// Runtime
 	localRuntime "maven.modrinth:jade:${jade_version}+neoforge"
